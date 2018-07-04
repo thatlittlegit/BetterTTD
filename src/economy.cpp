@@ -325,7 +325,7 @@ void ChangeOwnershipOfCompanyItems(Owner old_owner, Owner new_owner)
 			for (i = 0; i < 4; i++) {
 				if (c->share_owners[i] == old_owner) {
 					/* Sell his shares */
-					CommandCost res = DoCommand(0, c->index, 0, DC_EXEC | DC_BANKRUPT, CMD_SELL_SHARE_IN_COMPANY);
+					CommandCost res = DoCommand(0, c->index, 0, DC_EXEC | DC_BANKRUPT, CMD_SELL_1SHARE_IN_COMPANY);
 					/* Because we are in a DoCommand, we can't just execute another one and
 					 *  expect the money to be removed. We need to do it ourself! */
 					SubtractMoneyFromCompany(res);
@@ -340,7 +340,7 @@ void ChangeOwnershipOfCompanyItems(Owner old_owner, Owner new_owner)
 			cur_company2.Change(c->share_owners[i]);
 			if (_current_company != INVALID_OWNER) {
 				/* Sell the shares */
-				CommandCost res = DoCommand(0, old_owner, 0, DC_EXEC | DC_BANKRUPT, CMD_SELL_SHARE_IN_COMPANY);
+				CommandCost res = DoCommand(0, old_owner, 0, DC_EXEC | DC_BANKRUPT, CMD_SELL_1SHARE_IN_COMPANY);
 				/* Because we are in a DoCommand, we can't just execute another one and
 				 *  expect the money to be removed. We need to do it ourself! */
 				SubtractMoneyFromCompany(res);
@@ -1989,14 +1989,11 @@ extern int GetAmountOwnedBy(const Company *c, Owner owner);
 
 /**
  * Acquire shares in an opposing company.
- * @param tile unused
  * @param flags type of operation
  * @param p1 company to buy the shares from
- * @param p2 unused
- * @param text unused
  * @return the cost of this operation or an error
  */
-CommandCost CmdBuyShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 p2, const char *text)
+CommandCost BuySharesInCompany(DoCommandFlag flags, uint32 p1, int number)
 {
 	CommandCost cost(EXPENSES_OTHER);
 	CompanyID target_company = (CompanyID)p1;
@@ -2022,16 +2019,18 @@ CommandCost CmdBuyShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1,
 
 
 	/* old: cost.AddCost(CalculateCompanyValue(c) >> 2); */
-	cost.AddCost(CalculateCompanyValue(c) / 10);
+	cost.AddCost((CalculateCompanyValue(c) / 100) * number);
 
 	if (flags & DC_EXEC) {
 		OwnerByte *b = c->share_owners;
 
-		while (*b != COMPANY_SPECTATOR) b++; // share owners is guaranteed to contain at least one COMPANY_SPECTATOR
-		*b = _current_company;
+		for (int index = 0; index < number; index++) {
+			while (*b != COMPANY_SPECTATOR) b++; // share owners is guaranteed to contain at least one COMPANY_SPECTATOR
+			*b = _current_company;
+		}
 
 		for (int i = 0; c->share_owners[i] == _current_company;) {
-			if (++i == 10) {
+			if (++i == 100) {
 				c->bankrupt_value = 0;
 				DoAcquireCompany(c);
 				break;
@@ -2043,16 +2042,21 @@ CommandCost CmdBuyShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1,
 	return cost;
 }
 
+CommandCost CmdBuyOneShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 p2, const char *text) {
+	return BuySharesInCompany(flags, p1, 1);
+}
+
+CommandCost CmdBuyTenSharesInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 p2, const char *text) {
+	return BuySharesInCompany(flags, p1, 10);
+}
+
 /**
  * Sell shares in an opposing company.
- * @param tile unused
  * @param flags type of operation
  * @param p1 company to sell the shares from
- * @param p2 unused
- * @param text unused
  * @return the cost of this operation or an error
  */
-CommandCost CmdSellShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 p2, const char *text)
+CommandCost SellShareInCompany(DoCommandFlag flags, uint32 p1, int number)
 {
 	CompanyID target_company = (CompanyID)p1;
 	Company *c = Company::GetIfValid(target_company);
@@ -2068,7 +2072,7 @@ CommandCost CmdSellShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1
 	if (GetAmountOwnedBy(c, _current_company) == 0) return CommandCost();
 
 	/* old: Money cost = CalculateCompanyValue(c) >> 2; */
-	Money cost = CalculateCompanyValue(c) / 10;
+	Money cost = CalculateCompanyValue(c) / 100 * number;
 	/* adjust it a little to make it less profitable to sell and buy */
 	cost = -(cost - (cost >> 7));
 
@@ -2080,6 +2084,14 @@ CommandCost CmdSellShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1
 		CompanyAdminUpdate(c);
 	}
 	return CommandCost(EXPENSES_OTHER, cost);
+}
+
+CommandCost CmdSellOneShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 p2, const char *text) {
+	return SellShareInCompany(flags, p1, 1);
+}
+
+CommandCost CmdSellTenSharesInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 p2, const char *text) {
+	return SellShareInCompany(flags, p1, 10);
 }
 
 /**

@@ -36,8 +36,10 @@ enum CompanyWidgets {
 	WID_C_COLOUR_SCHEME,              ///< Button to change colour scheme.
 	WID_C_PRESIDENT_NAME,             ///< Button to change president name.
 	WID_C_COMPANY_NAME,               ///< Button to change company name.
-	WID_C_BUY_SHARE,                  ///< Button to buy a share.
-	WID_C_SELL_SHARE,                 ///< Button to sell a share.
+	WID_C_BUY_1SHARE,                 ///< Button to buy a share.
+	WID_C_BUY_10SHARE,                ///< Button to buy ten shares.
+	WID_C_SELL_1SHARE,                ///< Button to sell a share.
+	WID_C_SELL_10SHARE,               ///< Button to sell ten shares.
 
 	WID_C_SELECT_VIEW_BUILD_HQ,       ///< Panel about HQ.
 	WID_C_VIEW_HQ,                    ///< Button to view the HQ.

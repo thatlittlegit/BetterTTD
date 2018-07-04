@@ -268,8 +268,12 @@ void SQGSWindow_Register(Squirrel *engine)
 	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_COLOUR_SCHEME,                       "WID_C_COLOUR_SCHEME");
 	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_PRESIDENT_NAME,                      "WID_C_PRESIDENT_NAME");
 	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_COMPANY_NAME,                        "WID_C_COMPANY_NAME");
-	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_BUY_SHARE,                           "WID_C_BUY_SHARE");
-	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_SELL_SHARE,                          "WID_C_SELL_SHARE");
+	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_BUY_1SHARE,                          "WID_C_BUY_1SHARE");
+	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_BUY_10SHARE,                         "WID_C_BUY_10SHARE");
+	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_BUY_SHARE,                           "WID_C_BUY_10SHARE");
+	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_SELL_1SHARE,                         "WID_C_SELL_1SHARE");
+	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_SELL_10SHARE,                        "WID_C_SELL_10SHARE");
+	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_SELL_SHARE,                          "WID_C_SELL_10SHARE");
 	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_SELECT_VIEW_BUILD_HQ,                "WID_C_SELECT_VIEW_BUILD_HQ");
 	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_VIEW_HQ,                             "WID_C_VIEW_HQ");
 	SQGSWindow.DefSQConst(engine, ScriptWindow::WID_C_BUILD_HQ,                            "WID_C_BUILD_HQ");

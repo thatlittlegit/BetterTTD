@@ -552,7 +552,7 @@ Company *DoStartupNewCompany(bool is_ai, CompanyID company = INVALID_COMPANY)
 
 	c->money = c->current_loan = (100000ll * _economy.inflation_prices >> 16) / 50000 * 50000;
 
-	for (int index = 0; index < 10; index++) {
+	for (int index = 0; index < 100; index++) {
 		c->share_owners[index] = INVALID_OWNER;
 	}
 

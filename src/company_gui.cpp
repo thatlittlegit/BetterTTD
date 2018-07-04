@@ -1969,8 +1969,10 @@ static const NWidgetPart _nested_company_widgets[] = {
 			NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_C_COMPANY_NAME), SetFill(1, 0), SetDataTip(STR_COMPANY_VIEW_COMPANY_NAME_BUTTON, STR_COMPANY_VIEW_COMPANY_NAME_TOOLTIP),
 		EndContainer(),
 		NWidget(NWID_HORIZONTAL, NC_EQUALSIZE),
-			NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_C_BUY_SHARE), SetFill(1, 0), SetDataTip(STR_COMPANY_VIEW_BUY_SHARE_BUTTON, STR_COMPANY_VIEW_BUY_SHARE_TOOLTIP),
-			NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_C_SELL_SHARE), SetFill(1, 0), SetDataTip(STR_COMPANY_VIEW_SELL_SHARE_BUTTON, STR_COMPANY_VIEW_SELL_SHARE_TOOLTIP),
+			NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_C_BUY_1SHARE), SetFill(1, 0), SetDataTip(STR_COMPANY_VIEW_BUY_1SHARE_BUTTON, STR_COMPANY_VIEW_BUY_1SHARE_TOOLTIP),
+			NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_C_BUY_10SHARE), SetFill(1, 0), SetDataTip(STR_COMPANY_VIEW_BUY_10SHARE_BUTTON, STR_COMPANY_VIEW_BUY_10SHARE_TOOLTIP),
+			NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_C_SELL_1SHARE), SetFill(1, 0), SetDataTip(STR_COMPANY_VIEW_SELL_1SHARE_BUTTON, STR_COMPANY_VIEW_SELL_1SHARE_TOOLTIP),
+			NWidget(WWT_PUSHTXTBTN, COLOUR_GREY, WID_C_SELL_10SHARE), SetFill(1, 0), SetDataTip(STR_COMPANY_VIEW_SELL_10SHARE_BUTTON, STR_COMPANY_VIEW_SELL_10SHARE_TOOLTIP),
 		EndContainer(),
 	EndContainer(),
 };
@@ -1979,7 +1981,7 @@ int GetAmountOwnedBy(const Company *c, Owner owner)
 {
 	int result = 0;
 
-	for (int index = 0; index < 10; index++) {
+	for (int index = 0; index < 100; index++) {
 		result += c->share_owners[index] == owner;
 	}
 
@@ -2247,7 +2249,7 @@ struct CompanyWindow : Window
 				FOR_ALL_COMPANIES(c2) {
 					uint amt = GetAmountOwnedBy(c, c2->index);
 					if (amt != 0) {
-						SetDParam(0, amt * 10);
+						SetDParam(0, amt);
 						SetDParam(1, c2->index);
 
 						DrawString(r.left, r.right, y, STR_COMPANY_VIEW_SHARES_OWNED_BY);
@@ -2346,12 +2348,20 @@ struct CompanyWindow : Window
 				ShowCompanyInfrastructure((CompanyID)this->window_number);
 				break;
 
-			case WID_C_BUY_SHARE:
-				DoCommandP(0, this->window_number, 0, CMD_BUY_SHARE_IN_COMPANY | CMD_MSG(STR_ERROR_CAN_T_BUY_25_SHARE_IN_THIS));
+			case WID_C_BUY_1SHARE:
+				DoCommandP(0, this->window_number, 0, CMD_BUY_1SHARE_IN_COMPANY | CMD_MSG(STR_ERROR_CAN_T_BUY_25_SHARE_IN_THIS));
+				break;
+			
+			case WID_C_BUY_10SHARE:
+				DoCommandP(0, this->window_number, 0, CMD_BUY_10SHARE_IN_COMPANY | CMD_MSG(STR_ERROR_CAN_T_BUY_25_SHARE_IN_THIS));
 				break;
 
-			case WID_C_SELL_SHARE:
-				DoCommandP(0, this->window_number, 0, CMD_SELL_SHARE_IN_COMPANY | CMD_MSG(STR_ERROR_CAN_T_SELL_25_SHARE_IN));
+			case WID_C_SELL_1SHARE:
+				DoCommandP(0, this->window_number, 0, CMD_SELL_1SHARE_IN_COMPANY | CMD_MSG(STR_ERROR_CAN_T_SELL_25_SHARE_IN));
+				break;
+			
+			case WID_C_SELL_10SHARE:
+				DoCommandP(0, this->window_number, 0, CMD_SELL_10SHARE_IN_COMPANY | CMD_MSG(STR_ERROR_CAN_T_SELL_25_SHARE_IN));
 				break;
 
 #ifdef ENABLE_NETWORK
@@ -2433,20 +2443,26 @@ struct CompanyWindow : Window
 		if (_settings_game.economy.allow_shares) { // Shares are allowed
 			const Company *c = Company::Get(this->window_number);
 
-			/* If all shares are owned by someone (none by nobody), disable buy button */
-			this->SetWidgetDisabledState(WID_C_BUY_SHARE, GetAmountOwnedBy(c, INVALID_OWNER) == 0 ||
+			bool disableWidget = GetAmountOwnedBy(c, INVALID_OWNER) == 0 ||
 					/* Only 25% left to buy. If the company is human, disable buying it up.. TODO issues! */
 					(GetAmountOwnedBy(c, INVALID_OWNER) == 1 && !c->is_ai) ||
 					/* Spectators cannot do anything of course */
-					_local_company == COMPANY_SPECTATOR);
+					_local_company == COMPANY_SPECTATOR;
+			/* If all shares are owned by someone (none by nobody), disable buy button */
+			this->SetWidgetDisabledState(WID_C_BUY_1SHARE,  disableWidget);
+			this->SetWidgetDisabledState(WID_C_BUY_10SHARE,  disableWidget);
 
-			/* If the company doesn't own any shares, disable sell button */
-			this->SetWidgetDisabledState(WID_C_SELL_SHARE, (GetAmountOwnedBy(c, _local_company) == 0) ||
+			disableWidget = (GetAmountOwnedBy(c, _local_company) == 0) ||
 					/* Spectators cannot do anything of course */
-					_local_company == COMPANY_SPECTATOR);
+					_local_company == COMPANY_SPECTATOR;
+			/* If the company doesn't own any shares, disable sell button */
+			this->SetWidgetDisabledState(WID_C_SELL_1SHARE, disableWidget);
+			this->SetWidgetDisabledState(WID_C_SELL_10SHARE, disableWidget);
 		} else { // Shares are not allowed, disable buy/sell buttons
-			this->DisableWidget(WID_C_BUY_SHARE);
-			this->DisableWidget(WID_C_SELL_SHARE);
+			this->DisableWidget(WID_C_BUY_1SHARE);
+			this->DisableWidget(WID_C_BUY_10SHARE);
+			this->DisableWidget(WID_C_SELL_1SHARE);
+			this->DisableWidget(WID_C_SELL_10SHARE);
 		}
 	}
 };

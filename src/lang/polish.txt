@@ -3630,10 +3630,14 @@ STR_COMPANY_VIEW_COMPANY_NAME_TOOLTIP                           :{BLACK}Zmień n
 STR_COMPANY_VIEW_PRESIDENT_NAME_BUTTON                          :{BLACK}Prezes
 STR_COMPANY_VIEW_PRESIDENT_NAME_TOOLTIP                         :{BLACK}Zmień imię prezesa
 
-STR_COMPANY_VIEW_BUY_SHARE_BUTTON                               :{BLACK}Kup 10% udziałów w firmie
-STR_COMPANY_VIEW_SELL_SHARE_BUTTON                              :{BLACK}Sprzedaj 10% udziałów w firmie
-STR_COMPANY_VIEW_BUY_SHARE_TOOLTIP                              :{BLACK}Kup 10% udziałów w tej firmie. Shift+klik pokazuje szacunkowy koszt bez dokonania zakupu
-STR_COMPANY_VIEW_SELL_SHARE_TOOLTIP                             :{BLACK}Sprzedaj 10% udziałów tej firmy. Shift+klik pokazuje szacunkowy koszt bez dokonania zakupu
+STR_COMPANY_VIEW_BUY_1SHARE_BUTTON                              :{BLACK}Kup 1%
+STR_COMPANY_VIEW_BUY_10SHARE_BUTTON                             :{BLACK}Kup 10%
+STR_COMPANY_VIEW_SELL_1SHARE_BUTTON                             :{BLACK}Sprzedaj 1%
+STR_COMPANY_VIEW_SELL_10SHARE_BUTTON                            :{BLACK}Sprzedaj 10%
+STR_COMPANY_VIEW_BUY_1SHARE_TOOLTIP                             :{BLACK}Kup 1% udziałów w tej firmie. Shift+klik pokazuje szacunkowy koszt bez dokonania zakupu
+STR_COMPANY_VIEW_BUY_10SHARE_TOOLTIP                            :{BLACK}Kup 10% udziałów w tej firmie. Shift+klik pokazuje szacunkowy koszt bez dokonania zakupu
+STR_COMPANY_VIEW_SELL_1SHARE_TOOLTIP                            :{BLACK}Sprzedaj 1% udziałów tej firmy. Shift+klik pokazuje szacunkowy koszt bez dokonania zakupu
+STR_COMPANY_VIEW_SELL_10SHARE_TOOLTIP                           :{BLACK}Sprzedaj 10% udziałów tej firmy. Shift+klik pokazuje szacunkowy koszt bez dokonania zakupu
 
 STR_COMPANY_VIEW_COMPANY_NAME_QUERY_CAPTION                     :Nazwa firmy
 STR_COMPANY_VIEW_PRESIDENT_S_NAME_QUERY_CAPTION                 :Nazwisko prezesa

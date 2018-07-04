@@ -122,8 +122,10 @@ CommandProc CmdTurnRoadVeh;
 
 CommandProc CmdPause;
 
-CommandProc CmdBuyShareInCompany;
-CommandProc CmdSellShareInCompany;
+CommandProc CmdBuyOneShareInCompany;
+CommandProc CmdBuyTenSharesInCompany;
+CommandProc CmdSellOneShareInCompany;
+CommandProc CmdSellTenSharesInCompany;
 CommandProc CmdBuyCompany;
 
 CommandProc CmdFoundTown;
@@ -283,8 +285,10 @@ static const Command _command_proc_table[] = {
 
 	DEF_CMD(CmdPause,                                 CMD_SERVER, CMDT_SERVER_SETTING        ), // CMD_PAUSE
 
-	DEF_CMD(CmdBuyShareInCompany,                              0, CMDT_MONEY_MANAGEMENT      ), // CMD_BUY_SHARE_IN_COMPANY
-	DEF_CMD(CmdSellShareInCompany,                             0, CMDT_MONEY_MANAGEMENT      ), // CMD_SELL_SHARE_IN_COMPANY
+	DEF_CMD(CmdBuyOneShareInCompany,                           0, CMDT_MONEY_MANAGEMENT      ), // CMD_BUY_SHARE_IN_COMPANY
+	DEF_CMD(CmdBuyTenSharesInCompany,                          0, CMDT_MONEY_MANAGEMENT      ), // CMD_BUY_SHARE_IN_COMPANY
+	DEF_CMD(CmdSellOneShareInCompany,                          0, CMDT_MONEY_MANAGEMENT      ), // CMD_SELL_SHARE_IN_COMPANY
+	DEF_CMD(CmdSellTenSharesInCompany,                         0, CMDT_MONEY_MANAGEMENT      ), // CMD_SELL_SHARE_IN_COMPANY
 	DEF_CMD(CmdBuyCompany,                                     0, CMDT_MONEY_MANAGEMENT      ), // CMD_BUY_COMANY
 
 	DEF_CMD(CmdFoundTown,                CMD_DEITY | CMD_NO_TEST, CMDT_LANDSCAPE_CONSTRUCTION), // CMD_FOUND_TOWN; founding random town can fail only in exec run
