@@ -2006,8 +2006,10 @@ CommandCost CmdBuyShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1,
 	 * Cannot buy own shares */
 	if (c == NULL || !_settings_game.economy.allow_shares || _current_company == target_company) return CMD_ERROR;
 
+#ifndef DEBUGGING
 	/* Protect new companies from hostile takeovers */
 	if (_cur_year - c->inaugurated_year < 6) return_cmd_error(STR_ERROR_PROTECTED);
+#endif
 
 	/* Those lines are here for network-protection (clients can be slow) */
 	if (GetAmountOwnedBy(c, COMPANY_SPECTATOR) == 0) return cost;
@@ -2019,7 +2021,9 @@ CommandCost CmdBuyShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1,
 	}
 
 
-	cost.AddCost(CalculateCompanyValue(c) >> 2);
+	/* old: cost.AddCost(CalculateCompanyValue(c) >> 2); */
+	cost.AddCost(CalculateCompanyValue(c) / 10);
+
 	if (flags & DC_EXEC) {
 		OwnerByte *b = c->share_owners;
 
@@ -2027,7 +2031,7 @@ CommandCost CmdBuyShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1,
 		*b = _current_company;
 
 		for (int i = 0; c->share_owners[i] == _current_company;) {
-			if (++i == 4) {
+			if (++i == 10) {
 				c->bankrupt_value = 0;
 				DoAcquireCompany(c);
 				break;
@@ -2063,8 +2067,9 @@ CommandCost CmdSellShareInCompany(TileIndex tile, DoCommandFlag flags, uint32 p1
 	/* Those lines are here for network-protection (clients can be slow) */
 	if (GetAmountOwnedBy(c, _current_company) == 0) return CommandCost();
 
+	/* old: Money cost = CalculateCompanyValue(c) >> 2; */
+	Money cost = CalculateCompanyValue(c) / 10;
 	/* adjust it a little to make it less profitable to sell and buy */
-	Money cost = CalculateCompanyValue(c) >> 2;
 	cost = -(cost - (cost >> 7));
 
 	if (flags & DC_EXEC) {

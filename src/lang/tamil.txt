@@ -2871,8 +2871,8 @@ STR_COMPANY_VIEW_COMPANY_NAME_TOOLTIP                           :{BLACK}நி�
 STR_COMPANY_VIEW_PRESIDENT_NAME_BUTTON                          :{BLACK}மேலாளரின் பெயர்
 STR_COMPANY_VIEW_PRESIDENT_NAME_TOOLTIP                         :{BLACK}மேலாளரின் பெயரை மாற்று
 
-STR_COMPANY_VIEW_BUY_SHARE_BUTTON                               :{BLACK}நிறுவனத்தின் 25% பங்கினை வாங்கவும்
-STR_COMPANY_VIEW_SELL_SHARE_BUTTON                              :{BLACK}நிறுவனத்தின் 25% பங்கினை விற்கவும்
+STR_COMPANY_VIEW_BUY_SHARE_BUTTON                               :{BLACK}நிறுவனத்தின் 10% பங்கினை வாங்கவும்
+STR_COMPANY_VIEW_SELL_SHARE_BUTTON                              :{BLACK}நிறுவனத்தின் 10% பங்கினை விற்கவும்
 
 STR_COMPANY_VIEW_COMPANY_NAME_QUERY_CAPTION                     :நிறுவனத்தின் பெயர்
 STR_COMPANY_VIEW_PRESIDENT_S_NAME_QUERY_CAPTION                 :மேலாளரின் பெயர்

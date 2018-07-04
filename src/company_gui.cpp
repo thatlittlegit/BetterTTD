@@ -1977,10 +1977,13 @@ static const NWidgetPart _nested_company_widgets[] = {
 
 int GetAmountOwnedBy(const Company *c, Owner owner)
 {
-	return (c->share_owners[0] == owner) +
-				 (c->share_owners[1] == owner) +
-				 (c->share_owners[2] == owner) +
-				 (c->share_owners[3] == owner);
+	int result = 0;
+
+	for (int index = 0; index < 10; index++) {
+		result += c->share_owners[index] == owner;
+	}
+
+	return result;
 }
 
 /** Strings for the company vehicle counts */
@@ -2244,7 +2247,7 @@ struct CompanyWindow : Window
 				FOR_ALL_COMPANIES(c2) {
 					uint amt = GetAmountOwnedBy(c, c2->index);
 					if (amt != 0) {
-						SetDParam(0, amt * 25);
+						SetDParam(0, amt * 10);
 						SetDParam(1, c2->index);
 
 						DrawString(r.left, r.right, y, STR_COMPANY_VIEW_SHARES_OWNED_BY);
