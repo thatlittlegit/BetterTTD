@@ -2106,7 +2106,7 @@ STR_CONFIG_ERROR_OUT_OF_MEMORY                                  :{WHITE}Brak pam
 STR_CONFIG_ERROR_SPRITECACHE_TOO_BIG                            :{WHITE}Nie powiodła się rezerwacja pamięci cache dla sprite'ów od wielkości {BYTES}. Pamięć cache sprite'ów została zredukowana do {BYTES}. Obniży to wydajność OpenTTD. By zmniejszyć zapotrzebowanie pamięci, możesz spróbować wyłączyć grafikę 32bpp i/lub poziomy zbliżenia
 
 # Intro window
-STR_INTRO_CAPTION                                               :{WHITE}OpenTTD {REV}
+STR_INTRO_CAPTION                                               :{WHITE}BetterTTD {REV}
 
 STR_INTRO_NEW_GAME                                              :{BLACK}Nowa gra
 STR_INTRO_LOAD_GAME                                             :{BLACK}Wczytaj grę
@@ -3068,10 +3068,10 @@ STR_LAI_OBJECT_DESCRIPTION_COMPANY_HEADQUARTERS                 :Siedziba firmy
 STR_LAI_OBJECT_DESCRIPTION_COMPANY_OWNED_LAND                   :Teren w posiadaniu firmy
 
 # About OpenTTD window
-STR_ABOUT_OPENTTD                                               :{WHITE}OpenTTD
+STR_ABOUT_OPENTTD                                               :{WHITE}BetterTTD
 STR_ABOUT_ORIGINAL_COPYRIGHT                                    :{BLACK}Prawa Autorskie {COPYRIGHT} 1995 Chris Sawyer, Wszelkie prawa zastrzeżone
-STR_ABOUT_VERSION                                               :{BLACK}OpenTTD wersja {REV}
-STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}OpenTTD {COPYRIGHT}2002-2018 Zespół OpenTTD
+STR_ABOUT_VERSION                                               :{BLACK}BetterTTD wersja {REV} (Oparte na OpenTTD 1.8.0)
+STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}BetterTTD {COPYRIGHT}2002-2018 Zespół OpenTTD i {COPYRIGHT} 2018 thatlittlegit
 
 # Save/load game/scenario
 STR_SAVELOAD_SAVE_CAPTION                                       :{WHITE}Zapisz grę

@@ -1724,7 +1724,7 @@ STR_CONFIG_ERROR_OUT_OF_MEMORY                                  :{WHITE}Allan o 
 STR_CONFIG_ERROR_SPRITECACHE_TOO_BIG                            :{WHITE}Methwyd dyroddi {BYTES} o storfa corluniau. Lleihawyd y storfa corluniau at {BYTES}. Bydd hyn yn lleihau perfformiad OpenTTD. I leihau gofynion cof gallwch roi cynnig ar analluogi graffigiau 32 did a/neu lefelau mwyháu
 
 # Intro window
-STR_INTRO_CAPTION                                               :{WHITE}OpenTTD {REV}
+STR_INTRO_CAPTION                                               :{WHITE}BetterTTD {REV}
 
 STR_INTRO_NEW_GAME                                              :{BLACK}Gêm Newydd
 STR_INTRO_LOAD_GAME                                             :{BLACK}Llwytho Gêm
@@ -2685,10 +2685,10 @@ STR_LAI_OBJECT_DESCRIPTION_COMPANY_HEADQUARTERS                 :Pencadlys Cwmni
 STR_LAI_OBJECT_DESCRIPTION_COMPANY_OWNED_LAND                   :Tir cwmni
 
 # About OpenTTD window
-STR_ABOUT_OPENTTD                                               :{WHITE}Gwybodaeth am OpenTTD
+STR_ABOUT_OPENTTD                                               :{WHITE}Gwybodaeth am BetterTTD
 STR_ABOUT_ORIGINAL_COPYRIGHT                                    :{BLACK}Hawlfraint Wreiddiol {COPYRIGHT} 1995 Chris Sawyer, Holl cedwir pob hawl
-STR_ABOUT_VERSION                                               :{BLACK}fersiwn OpenTTD {REV}
-STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}OpenTTD {COPYRIGHT}2002-2018 Y tîm OpenTTD
+STR_ABOUT_VERSION                                               :{BLACK}BetterTTD fersiwn {REV} (yn seiliedig ar OpenTTD 1.8.0)
+STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}BetterTTD {COPYRIGHT}2002-2018 Y tîm OpenTTD a {COPYRIGHT}2018 thatlittlegit
 
 # Save/load game/scenario
 STR_SAVELOAD_SAVE_CAPTION                                       :{WHITE}Cadw Gêm

@@ -1726,7 +1726,7 @@ STR_CONFIG_ERROR_OUT_OF_MEMORY                                  :{WHITE}Slut på
 STR_CONFIG_ERROR_SPRITECACHE_TOO_BIG                            :{WHITE}Allokerandet av {BYTES} till spritecachen misslyckades. Spritecachen begränsades till {BYTES}. Detta kommer att begränsa OpenTTD:s prestanda. För att minska minneskraven kan du försöka att inaktivera 32bpp-grafik och/eller antalet inzoomningsnivåer
 
 # Intro window
-STR_INTRO_CAPTION                                               :{WHITE}OpenTTD {REV}
+STR_INTRO_CAPTION                                               :{WHITE}BetterTTD {REV}
 
 STR_INTRO_NEW_GAME                                              :{BLACK}Nytt spel
 STR_INTRO_LOAD_GAME                                             :{BLACK}Ladda spel
@@ -2688,10 +2688,10 @@ STR_LAI_OBJECT_DESCRIPTION_COMPANY_HEADQUARTERS                 :Företagets huv
 STR_LAI_OBJECT_DESCRIPTION_COMPANY_OWNED_LAND                   :Mark som ägs av företag
 
 # About OpenTTD window
-STR_ABOUT_OPENTTD                                               :{WHITE}Om OpenTTD
+STR_ABOUT_OPENTTD                                               :{WHITE}Om BetterTTD
 STR_ABOUT_ORIGINAL_COPYRIGHT                                    :{BLACK}Ursprunglig upphovsrätt {COPYRIGHT} 1995 Chris Sawyer, Alla rättigheter hävdas
-STR_ABOUT_VERSION                                               :{BLACK}OpenTTD-version {REV}
-STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}OpenTTD {COPYRIGHT} 2002-2018 OpenTTD-teamet
+STR_ABOUT_VERSION                                               :{BLACK}BetterTTD-version {REV} (baserat på OpenTTD 1.8.0)
+STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}BetterTTD {COPYRIGHT} 2002-2018 OpenTTD-teamet och {COPYRIGHT} 2018 thatlittlegit
 
 # Save/load game/scenario
 STR_SAVELOAD_SAVE_CAPTION                                       :{WHITE}Spara spel

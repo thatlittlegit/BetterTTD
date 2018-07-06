@@ -1384,7 +1384,7 @@ STR_CONFIG_SETTING_QUERY_CAPTION                                :{WHITE}Ŝanĝu 
 # Config errors
 
 # Intro window
-STR_INTRO_CAPTION                                               :{WHITE}OpenTTD {REV}
+STR_INTRO_CAPTION                                               :{WHITE}BetterTTD {REV}
 
 STR_INTRO_NEW_GAME                                              :{BLACK}Nova Ludo
 STR_INTRO_LOAD_GAME                                             :{BLACK}Ŝarĝu ludon
@@ -2262,10 +2262,10 @@ STR_LAI_OBJECT_DESCRIPTION_COMPANY_HEADQUARTERS                 :Kompania Ĉefko
 STR_LAI_OBJECT_DESCRIPTION_COMPANY_OWNED_LAND                   :Kompanie posedata lando
 
 # About OpenTTD window
-STR_ABOUT_OPENTTD                                               :{WHITE}Pri OpenTTD
+STR_ABOUT_OPENTTD                                               :{WHITE}Pri BetterTTD
 STR_ABOUT_ORIGINAL_COPYRIGHT                                    :{BLACK}Origina kopirajto {COPYRIGHT} 1995 Chris Sawyer, Ĉiuj rajtoj rezervitaj
-STR_ABOUT_VERSION                                               :{BLACK}OpenTTD-versio {REV}
-STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}OpenTTD {COPYRIGHT}2002-2018 La teamo de OpenTTD
+STR_ABOUT_VERSION                                               :{BLACK}BetterTTD-versio {REV} (Bazita sur OpenTTD 1.8.0)
+STR_ABOUT_COPYRIGHT_OPENTTD                                     :{BLACK}OpenTTD {COPYRIGHT}2002-2018 La teamo de OpenTTD kaj {COPYRIGHT}2018 thatlittlegit
 
 # Save/load game/scenario
 STR_SAVELOAD_SAVE_CAPTION                                       :{WHITE}Konservu Ludon

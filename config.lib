@@ -46,7 +46,7 @@ set_default() {
 	man_dir="1"
 	menu_dir="1"
 	menu_group="Game;"
-	menu_name="OpenTTD"
+	menu_name="BetterTTD"
 	binary_name="openttd"
 	enable_debug="0"
 	enable_desync_debug="0"

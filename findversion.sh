@@ -86,7 +86,8 @@ if [ -d "$ROOT_DIR/.git" ]; then
 		BRANCH=""
 		REV="$TAG[$REV]"
 	fi
-	REV="$REV-tlg"
+	ADDITIVE=`if [ -z "$APPVEYOR_BUILD_VERSION" ]; then echo -n tlg; else echo -n $APPVEYOR_BUILD_VERSION; fi`
+	REV="$REV-$ADDITIVE"
 elif [ -f "$ROOT_DIR/.ottdrev" ]; then
 	# We are an exported source bundle
 	cat $ROOT_DIR/.ottdrev
