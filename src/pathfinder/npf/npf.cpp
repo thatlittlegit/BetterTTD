@@ -275,7 +275,6 @@ static uint NPFReservedTrackCost(AyStarNode *current)
  */
 static void NPFMarkTile(TileIndex tile)
 {
-#ifndef NO_DEBUG_MESSAGES
 	if (_debug_npf_level < 1 || _networking) return;
 	switch (GetTileType(tile)) {
 		case MP_RAILWAY:
@@ -296,7 +295,6 @@ static void NPFMarkTile(TileIndex tile)
 		default:
 			break;
 	}
-#endif
 }
 
 static int32 NPFWaterPathCost(AyStar *as, AyStarNode *current, OpenListNode *parent)
@@ -809,7 +807,7 @@ static TrackdirBits GetDriveableTrackdirBits(TileIndex dst_tile, Trackdir src_tr
 {
 	TrackdirBits trackdirbits = TrackStatusToTrackdirBits(GetTileTrackStatus(dst_tile, type, subtype));
 
-	if (trackdirbits == 0 && type == TRANSPORT_ROAD && HasBit(subtype, ROADTYPE_TRAM)) {
+	if (trackdirbits == TRACKDIR_BIT_NONE && type == TRANSPORT_ROAD && HasBit(subtype, ROADTYPE_TRAM)) {
 		/* GetTileTrackStatus() returns 0 for single tram bits.
 		 * As we cannot change it there (easily) without breaking something, change it here */
 		switch (GetSingleTramBit(dst_tile)) {
@@ -902,7 +900,7 @@ static void NPFFollowTrack(AyStar *aystar, OpenListNode *current)
 
 		trackdirbits = GetDriveableTrackdirBits(dst_tile, src_trackdir, type, subtype);
 
-		if (trackdirbits == 0) {
+		if (trackdirbits == TRACKDIR_BIT_NONE) {
 			/* We cannot enter the next tile. Road vehicles can reverse, others reach dead end */
 			if (type != TRANSPORT_ROAD || HasBit(subtype, ROADTYPE_TRAM)) return;
 
@@ -926,7 +924,7 @@ static void NPFFollowTrack(AyStar *aystar, OpenListNode *current)
 
 	/* Enumerate possible track */
 	uint i = 0;
-	while (trackdirbits != 0) {
+	while (trackdirbits != TRACKDIR_BIT_NONE) {
 		Trackdir dst_trackdir = RemoveFirstTrackdir(&trackdirbits);
 		DEBUG(npf, 5, "Expanded into trackdir: %d, remaining trackdirs: 0x%X", dst_trackdir, trackdirbits);
 
